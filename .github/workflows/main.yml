@@ -28,8 +28,7 @@ jobs:
           REACT_APP_FIREBASE_APPID: ${{secrets.REACT_APP_FIREBASE_APPID}}
           REACT_APP_FIREBASE_MEASUREMENTID: ${{secrets.REACT_APP_FIREBASE_MEASUREMENTID}}
       - name: Deploy
-        if: github.ref == 'refs/heads/main'
-        uses: crazy-max/ghaction-github-pages@v1
+        uses: crazy-max/ghaction-github-pages@v2
         with:
           target_branch: gh-pages
           build_dir: build

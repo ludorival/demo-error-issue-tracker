@@ -8,10 +8,9 @@ import {
   Select,
   Avatar,
   Image,
+  Skeleton,
 } from "antd";
-import {
-  GithubOutlined,
-} from "@ant-design/icons";
+import { GithubOutlined } from "@ant-design/icons";
 import {
   Issue,
   SavedTrackedErrors,
@@ -52,13 +51,15 @@ type Record = {
   source: SavedTrackedErrors;
 };
 
-const client = (currentUser?: User) => currentUser && new GithubIssueClient(currentUser.githubToken)
+const client = (currentUser?: User) =>
+  currentUser && new GithubIssueClient(currentUser.githubToken);
 function App() {
   const [errorStatus, setErrorStatus] = useState<string | undefined>();
   const [datasource, setDatasource] = useState<Record[]>([]);
   const [currentUser, setCurrentUser] = useState<User | undefined>();
   const [repos, setRepos] = useState<Repository[]>();
   const [projectId, setProjectId] = useState<string | undefined>();
+  const [loading, setLoading] = useState(false);
   const fillDatasources = (errors: SavedTrackedErrors[]) =>
     setDatasource(
       errors.map((e) => ({
@@ -71,7 +72,13 @@ function App() {
       }))
     );
   useEffect(() => {
-    !currentUser && getGithubUser().then(setCurrentUser);
+    if (!currentUser) {
+      setLoading(true);
+      getGithubUser().then((user) => {
+        setCurrentUser(user);
+        setLoading(false);
+      });
+    }
     const unsubscribe = projectId
       ? database.onRead(projectId, fillDatasources)
       : () => {};
@@ -82,7 +89,7 @@ function App() {
   }, [currentUser, repos]);
 
   const onFinish = async (values: any) => {
-    const githubClient = client(currentUser)
+    const githubClient = client(currentUser);
     if (!githubClient || !projectId)
       throw new Error("Need to be login to use this feature");
     const options: TrackErrorOptions = {
@@ -217,10 +224,8 @@ function App() {
                 </p>
               </p>
               <p>
-                This demo uses your Github account to list your repository <i>
-                  (None
-                  of your personnal data will be stored)
-                </i>.
+                This demo uses your Github account to list your repository{" "}
+                <i>(None of your personnal data will be stored)</i>.
                 <ul>
                   <li>
                     Select a repository where the errors should be tracked
@@ -239,17 +244,23 @@ function App() {
         </div>
         <hr />
         {!currentUser ? (
-          <div style={{...centered, flexDirection: 'column',}}>
-            <div style={{ fontWeight: 800 , padding: 24, fontSize:'2em'}}>Let's get started ! 👇</div>
-            <Button
-              type="primary"
-              size={"large"}
-              icon={<GithubOutlined />}
-              onClick={loginWithGithub}
-            >
-              Log in with Github
-            </Button>
-          </div>
+          loading ? (
+            <Skeleton active />
+          ) : (
+            <div style={{ ...centered, flexDirection: "column" }}>
+              <div style={{ fontWeight: 800, padding: 24, fontSize: "2em" }}>
+                Let's get started ! 👇
+              </div>
+              <Button
+                type="primary"
+                size={"large"}
+                icon={<GithubOutlined />}
+                onClick={loginWithGithub}
+              >
+                Log in with Github
+              </Button>
+            </div>
+          )
         ) : (
           <Fragment>
             <Form
@@ -301,7 +312,11 @@ function App() {
       </Content>
       <Footer style={{ textAlign: "center" }}>
         Ant Design ©2018 Created by Ant UED
-        <p><a href="https://www.termsfeed.com/live/269deb2a-4a39-4ce1-8bd2-3a4f1c3bbf54">Private Policy</a></p>
+        <p>
+          <a href="https://www.termsfeed.com/live/269deb2a-4a39-4ce1-8bd2-3a4f1c3bbf54">
+            Private Policy
+          </a>
+        </p>
       </Footer>
     </Layout>
   );

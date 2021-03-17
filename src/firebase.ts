@@ -7,14 +7,13 @@ import {
 
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
+  authDomain: 'fir-error-issue-tracker.firebaseapp.com',
+  projectId: 'fir-error-issue-tracker',
+  storageBucket: 'fir-error-issue-tracker.appspot.com',
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGINGSENDERID,
   appId: process.env.REACT_APP_FIREBASE_APPID,
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID,
 };
-
 firebase.initializeApp(config);
 
 const firestore = firebase.firestore();

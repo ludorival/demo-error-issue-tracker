@@ -22,12 +22,12 @@ jobs:
       - name: Test
         env:
           TEST_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REACT_APP_FIREBASE_APIKEY: ${{secrets.REACT_APP_FIREBASE_APIKEY}}
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
           REACT_APP_FIREBASE_AUTHDOMAIN: ${{secrets.REACT_APP_FIREBASE_AUTHDOMAIN}}
           REACT_APP_FIREBASE_PROJECTID: ${{secrets.REACT_APP_FIREBASE_PROJECTID}}
         run: |
           echo ${#TEST_GITHUB_TOKEN}
-          echo ${#REACT_APP_FIREBASE_AUTHDOMAIN}
+          echo ${#NPM_TOKEN}
           echo ${#REACT_APP_FIREBASE_APIKEY}
           echo ${#REACT_APP_FIREBASE_PROJECTID}
       - run: npm install yarn

@@ -1,6 +1,6 @@
 # Demo Error Issue Tracker
 
-> This projects aims to show you an usage of [error-issue-tracker-sdk](https://github.com/ludorival/error-issue-tracker).
+> This project aims to show you an usage of [error-issue-tracker-sdk](https://github.com/ludorival/error-issue-tracker).
 
 Access to the demo 
 👉👉 [HERE](https://ludorival.github.io/demo-error-issue-tracker/) 👈👈

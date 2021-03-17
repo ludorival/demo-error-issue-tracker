@@ -3,7 +3,7 @@
 > This projects aims to show you an usage of [error-issue-tracker-sdk](https://github.com/ludorival/error-issue-tracker).
 
 Access to the demo 
-👉👉 [HERE](https://ludorival-bot.github.io/demo-error-issue-tracker/) 👈👈
+👉👉 [HERE](https://ludorival.github.io/demo-error-issue-tracker/) 👈👈
 
 In this demo, we use 
 - [Github sdk](src/github.ts) to implement the Issue client where to track the error.

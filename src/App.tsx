@@ -52,13 +52,13 @@ type Record = {
   source: SavedTrackedErrors;
 };
 
+const client = (currentUser?: User) => currentUser && new GithubIssueClient(currentUser.githubToken)
 function App() {
   const [errorStatus, setErrorStatus] = useState<string | undefined>();
   const [datasource, setDatasource] = useState<Record[]>([]);
   const [currentUser, setCurrentUser] = useState<User | undefined>();
   const [repos, setRepos] = useState<Repository[]>();
   const [projectId, setProjectId] = useState<string | undefined>();
-  const client = () => currentUser && new GithubIssueClient(currentUser.githubToken)
   const fillDatasources = (errors: SavedTrackedErrors[]) =>
     setDatasource(
       errors.map((e) => ({
@@ -78,11 +78,11 @@ function App() {
     return unsubscribe;
   }, [currentUser, projectId]);
   useEffect(() => {
-    !repos && client()?.getRepositories().then(setRepos);
-  }, [repos]);
+    !repos && client(currentUser)?.getRepositories().then(setRepos);
+  }, [currentUser, repos]);
 
   const onFinish = async (values: any) => {
-    const githubClient = client()
+    const githubClient = client(currentUser)
     if (!githubClient || !projectId)
       throw new Error("Need to be login to use this feature");
     const options: TrackErrorOptions = {
@@ -137,7 +137,7 @@ function App() {
           onClick={() =>
             database
               .delete(record.source)
-              .then(() => client()?.closeIssue(record.source))
+              .then(() => client(currentUser)?.closeIssue(record.source))
           }
         >
           Close and delete

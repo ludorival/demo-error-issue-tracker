@@ -1732,10 +1732,10 @@
     universal-github-app-jwt "^1.0.1"
     universal-user-agent "^6.0.0"
 
-"@octokit/auth-oauth-app@3.0.8":
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/@octokit/auth-oauth-app/-/auth-oauth-app-3.0.8.tgz#05b3a102dae45591a265f0b0b7862e17afffb6e1"
-  integrity sha512-LxP/1oQSICvmy5CLCesF3hT8CjtTHga3hsQKBTmFq892pgoOmHUhbcc0BALqgjcuRz1dEy8x2QB7UQibEnEerw==
+"@octokit/auth-oauth-app@3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@octokit/auth-oauth-app/-/auth-oauth-app-3.1.1.tgz#50a7064bbeb772d3b2ec25e2d638d69e68ae2e42"
+  integrity sha512-ClH/fR5R/GvFQTIbO175DGPVqH7FFKrwmPl8r+ZZtqHzv8D9DaR+qpt10KvnxiOOMElOncKY+Z/MayZ4R8rz/Q==
   dependencies:
     "@octokit/request" "^5.3.0"
     "@octokit/request-error" "^2.0.0"

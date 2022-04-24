@@ -5,7 +5,7 @@
   "homepage": "https://ludorival.github.io/demo-error-issue-tracker/",
   "dependencies": {
     "@octokit/auth-app": "3.0.0",
-    "@octokit/auth-oauth-app": "3.0.8",
+    "@octokit/auth-oauth-app": "4.3.1",
     "@octokit/rest": "18.3.5",
     "@testing-library/jest-dom": "5.11.9",
     "@testing-library/react": "11.2.5",

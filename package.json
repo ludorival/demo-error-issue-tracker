@@ -7,7 +7,7 @@
     "@octokit/auth-app": "3.0.0",
     "@octokit/auth-oauth-app": "3.0.8",
     "@octokit/rest": "18.3.5",
-    "@testing-library/jest-dom": "5.11.9",
+    "@testing-library/jest-dom": "5.17.0",
     "@testing-library/react": "11.2.5",
     "@testing-library/user-event": "13.0.2",
     "@types/jest": "26.0.21",
